@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Materiais</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/find_codStyles.css">
+</head>
+<body>
+  <header class="header">
+    <img src="https://i.ibb.co/5h0GcMc8/USGA-01.png" alt="Logo da Empresa" class="logo">
+  </header>
+    <div class="container">
+        <div class="main-item">
+            <img src=" " alt="Imagem do Material" class="item-image">
+            <div class="item-info">
+                <h2><strong>CÓDIGO:  </strong></h2>
+                <p> </p>
+                <p><strong>Referência:</strong>  </p>
+                <h4><strong>Marca:</strong>  </h4>
+            </div>
+        </div>
+
+        <div class="reference-list">
+            <div class="reference-item" onclick="openModal(' ')">
+                <img src=" " alt="Imagem do Material" class="item-image">
+                <div>
+                    <p><strong>Referência:</strong> </p>
+                    <p><strong>Marca:</strong> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="back-button" onclick="voltarBotao()">&lt;</button>
+        <button class="add-button" onclick="adicionarMaterial()">+</button>
+    </div>
+
+    <div id="imageModal" class="modal" style="display: none;">
+        <div class="modal-content-img">
+            <button class="prev" onclick="prevImage()">&#10094;</button>
+            <img id="modalImg" src="" alt="Imagem Ampliada">
+            <button class="next" onclick="nextImage()">&#10095;</button>
+            <button class="close" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal de inserção de referências -->
+    <form action="find_cod.html" method="post" enctype="multipart/form-data">
+      <div id="insertModal" class="modal_insert">
+          <div class="modal-content-insert">
+              <h2>Adicionar Referência Similar</h2>
+              <label for="referencia">Referência:</label>
+              <input class="modal_insert_input" type="text" id="referencia" placeholder="Digite a referência" required>
+
+              <label for="marca">Marca:</label>
+              <input class="modal_insert_input" type="text" id="marca" placeholder="Digite a marca" required>
+
+              <label for="fotos">Fotos:</label>
+              <input type="file" id="fotos" multiple accept="image/*" required>
+
+              <div class="modal-buttons-insert">
+                  <button>Salvar</button>
+                  <button type="button" onclick="closeInsertModal()">Cancelar</button>
+              </div>
+          </div>
+      </div>
+    </form>
+    <script type="module" src="js/moduleFind.js"></script>
+    <script type="module" src="js/moduleInsert.js"></script>
+    <script>
+          function openModal(images, index = 0) {
+              imagens = images;
+              imagemAtual = index;
+              document.getElementById("modalImg").src = imagens[imagemAtual];
+              document.getElementById("imageModal").style.display = "flex";
+          }
+          function closeModal() {
+              document.getElementById("imageModal").style.display = "none";
+          }
+          function prevImage() {
+              imagemAtual = (imagemAtual > 0) ? imagemAtual - 1 : imagens.length - 1;
+              document.getElementById("modalImg").src = imagens[imagemAtual];
+          }
+          function nextImage() {
+              imagemAtual = (imagemAtual < imagens.length - 1) ? imagemAtual + 1 : 0;
+              document.getElementById("modalImg").src = imagens[imagemAtual];
+          }
+          function voltarBotao() {
+              window.history.back();
+          }
+          function adicionarMaterial() {
+              document.getElementById("insertModal").style.display = "flex";
+          }
+          function closeInsertModal() {
+              document.getElementById("insertModal").style.display = "none";
+          }
+    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Desenvolvido por Carlos Júnior | No Copyright 🚀</p>
+    </footer>
+</body>
+</html>

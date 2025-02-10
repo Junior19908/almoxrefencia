@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Materiais</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style media="screen">
+      .add-button{
+        margin-left: 80%;
+      }
+      /* Estilização do botão de buscar */
+      .search-button {
+        margin-left: 10px;
+      }
+      .search-button:hover {
+        background-color: #b71c1c;
+      }
+      .search-button {
+        background-color: #286b2d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+      }
+      .buscar_cod{
+        border-radius: 5px;
+        width: 65%;
+        height: 20px;
+        background-color: #283315;
+        color: white;
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
+    <script src="https://kit.fontawesome.com/d144a26f39.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="https://i.ibb.co/5h0GcMc8/USGA-01.png" alt="Logo da Empresa" class="logo">
+  </header>
+  <section class="section hidden" id="findCodSection">
+    <form id="searchForm">
+      <div class="container">
+        <input id="buscar_cod" class="buscar_cod" type="text" name="buscar_cod" value="" placeholder="Buscar Material!">
+        <button class="search-button">Buscar!</button>
+      </div>
+    </form>
+  </section>
+    <div class="button-container" id="add_button">
+      <button class="add-button" onclick="adicionarMaterial()">+</button>
+    </div>
+    <script type="module" src="js/moduleBusca.js"></script>
+    <script>
+      function adicionarMaterial(){
+        location.href = "add_material.html"
+      };
+    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Desenvolvido por Carlos Júnior | No Copyright 🚀</p>
+    </footer>
+</body>
+</html>

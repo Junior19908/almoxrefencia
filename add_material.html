@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Materiais - Adicionar Material</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/add_materialStyles.css">
+    <script src="https://kit.fontawesome.com/d144a26f39.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="header">
+    <img src="https://i.ibb.co/5h0GcMc8/USGA-01.png" alt="Logo da Empresa" class="logo">
+  </header>
+
+  <form action="find_cod.html" method="post" enctype="multipart/form-data">
+    <div class="container">
+      <label class="text_add" for="cod_material">Código do Material</label>
+      <input class="add_material" type="number" name="cod_material" placeholder="Código do Material!">
+
+      <label class="text_add" for="desc_material">Descrição do Material</label>
+      <input class="add_material" type="text" name="desc_material" placeholder="Descrição do Material!">
+
+      <label class="text_add" for="marca_material">Marca do Material</label>
+      <input class="add_material" type="text" name="marca_material" placeholder="Marca do Material!">
+
+      <label class="text_add" for="referencia_material">Referência do Material</label>
+      <input class="add_material" type="text" name="referencia_material" placeholder="Referência do Material!">
+
+      <!-- Input para múltiplas imagens -->
+      <label class="text_add" for="foto_material">Fotos do Material</label>
+      <input class="add_foto" type="file" name="foto_material[]" id="foto_material" multiple accept="image/*">
+
+      <!-- Área para exibir a prévia das imagens -->
+      <div class="preview-container" id="preview-container"></div>
+
+      <button class="search-button">Adicionar Material!</button>
+    </div>
+  </form>
+
+  <div class="button-container">
+    <button class="back-button" onclick="voltarBotao()">&lt;</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+      <p>Desenvolvido por Carlos Júnior | No Copyright 🚀</p>
+  </footer>
+
+  <script>
+    document.getElementById("foto_material").addEventListener("change", function(event) {
+        let previewContainer = document.getElementById("preview-container");
+        previewContainer.innerHTML = ""; // Limpa as imagens antigas
+        Array.from(event.target.files).forEach((file, index) => {
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let previewDiv = document.createElement("div");
+                previewDiv.classList.add("preview");
+
+                let img = document.createElement("img");
+                img.src = e.target.result;
+
+                let removeBtn = document.createElement("button");
+                removeBtn.innerHTML = "X";
+                removeBtn.classList.add("remove-btn");
+                removeBtn.onclick = function() {
+                    previewDiv.remove();
+                };
+
+                previewDiv.appendChild(img);
+                previewDiv.appendChild(removeBtn);
+                previewContainer.appendChild(previewDiv);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+    function voltarBotao(){
+            location.href = "index.html"
+        };
+</script>
+<script type="module" src="js/moduleAddMaterial.js"></script>
+
+</body>
+</html>
