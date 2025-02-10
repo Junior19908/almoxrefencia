@@ -54,7 +54,7 @@ if (materialData) {
                 const referenceItem = document.createElement("div");
                 referenceItem.classList.add("reference-item");
                 referenceItem.innerHTML = `
-                    <img src="${referenciaData.imagem || 'https://firebasestorage.googleapis.com/v0/b/referenciacat.firebasestorage.app/o/materiais_fotos%2FCaptura_de_tela_2025-02-09_190155-removebg-preview.png?alt=media&token=cf5d44b2-df71-4daf-ad32-4503260e0360'}" alt="Imagem do Material" class="item-image">
+                    <img src="${referenciaData.imagens || 'https://firebasestorage.googleapis.com/v0/b/referenciacat.firebasestorage.app/o/materiais_fotos%2FCaptura_de_tela_2025-02-09_190155-removebg-preview.png?alt=media&token=cf5d44b2-df71-4daf-ad32-4503260e0360'}" alt="Imagem do Material" class="item-image">
                     <div>
                         <p><strong>Referência:</strong> ${referenciaData.referencia_mat}</p>
                         <p><strong>Marca:</strong> ${referenciaData.marca || "Sem marca"}</p>
