@@ -33,7 +33,7 @@ if (materialData) {
     const mainItemImage = document.querySelector(".main-item img");
 
     if (data.fotos && Array.isArray(data.fotos)) {
-        mainItemImage.src = data.fotos[0]; // Exibe a primeira imagem
+        mainItemImage.src = data.fotos[0];
         mainItemImage.alt = `Imagem de ${data.descricao}`;
         mainItemImage.onclick = () => openModal(data.fotos); // Passa todas as imagens para o modal
     }
