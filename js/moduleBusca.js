@@ -38,12 +38,19 @@
                if(!userDoc.status === true){
                    await signOut(auth);
                    alert('Acesso negado: Usuário não autorizado');
-                   window.location.href = "erro.html";
+                   //window.location.href = "erro.html";
+               }
+               if (userDoc.role === "admin") {
+                 document.getElementById('add_button_material').classList.remove('hidden');
+                 document.getElementById('edi_button_material').classList.remove('hidden');
+               }else if (userDoc.role === "conferente") {
+                 document.getElementById('add_button_material').classList.remove('hidden');
+                 document.getElementById('edi_button_material').classList.remove('hidden');
                }
            }
        }catch(error){
            console.error("Erro ao buscar status do usuário: ", error);
-           window.location.href='erro.html';
+           //window.location.href='erro.html';
        }
        document.getElementById('findCodSection').classList.remove('hidden');
        document.getElementById('add_button').classList.remove('hidden');
