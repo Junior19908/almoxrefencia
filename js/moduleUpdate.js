@@ -65,7 +65,7 @@ async function atualizarDados(referencia, marca, fotos) {
                 const url = await getDownloadURL(storageRef);
                 fotosURLs.push(url);
             }
-            updateData.imagens = fotosURLs;
+            updateData.fotos = fotosURLs;
         }
 
         await updateDoc(docRef, updateData);
