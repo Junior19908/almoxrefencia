@@ -1,0 +1,61 @@
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="file"] {
+  width: 88%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #286b2d;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #286b2d;
+}
+.button_editar{
+  margin-left: 0%;
+}
+.button_excluir{
+  margin-left: 50%;
+}
+.buscar_cod {
+  border-radius: 5px;
+  width: 92%;
+  height: 20px;
+  background-color: #283315;
+  color: white;
+}
+.titulo_similar{
+  text-align: center;
+}

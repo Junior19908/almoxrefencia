@@ -1,0 +1,29 @@
+.container{
+  color: white;
+}
+/* Estilização do botão de buscar */
+.search-button {
+  margin-left: 10px;
+}
+.search-button:hover {
+  background-color: #b71c1c;
+}
+.search-button {
+  background-color: #286b2d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  width: 93%;
+  margin-top: 5%;
+}
+.buscar_cod {
+  border-radius: 5px;
+  width: 98%;
+  height: 20px;
+  background-color: #283315;
+  color: white;
+}

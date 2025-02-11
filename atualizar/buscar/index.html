@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Material</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/searchStyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <img src="https://i.ibb.co/5h0GcMc8/USGA-01.png" alt="Logo da Empresa" class="logo">
+    </header>
+
+    <div class="container">
+        <h1>Buscar Material por Código</h1>
+        <form id="searchForm">
+            <label for="codigo">Código do Material:</label>
+            <input class="buscar_cod" type="text" id="codigo" name="codigo" required>
+            
+            <button class="search-button">Buscar!</button>
+        </form>
+        <div class="button-container">
+            <button class="back-button" onclick="voltarBotao()"><i class="fa-solid fa-backward"></i></button>
+        </div>    
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Desenvolvido por Carlos Júnior | No Copyright 🚀</p>
+    </footer>
+<script>
+    function voltarBotao() {
+              location.href = "../../";
+          }
+</script>
+    <!-- Scripts -->
+    <script type="module" src="../../js/moduleSearch.js"></script>
+</body>
+</html>
