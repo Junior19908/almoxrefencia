@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getFirestore, doc, getDoc, updateDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
 
 // Configuração do Firebase
@@ -27,10 +27,9 @@ if (!codigo) {
     window.location.href = "../buscar/"; // Redireciona para a tela de busca
 }
 
-// Busque os dados atuais do material principal
+// Busque os dados atuais do material
 async function carregarDados() {
     try {
-        // Buscar o material principal
         const docRef = doc(db, "materiais_ref", codigo);
         const docSnap = await getDoc(docRef);
 
@@ -38,18 +37,6 @@ async function carregarDados() {
             const data = docSnap.data();
             document.getElementById("referencia").value = data.referencia;
             document.getElementById("marca").value = data.marca;
-
-            // Buscar os produtos similares (subcoleção referencia_kt)
-            const produtosSimilaresRef = collection(db, "materiais_ref", codigo, "referencia_kt");
-            const produtosSimilaresSnap = await getDocs(produtosSimilaresRef);
-
-            const produtosSimilares = [];
-            produtosSimilaresSnap.forEach((doc) => {
-                produtosSimilares.push({ id: doc.id, ...doc.data() });
-            });
-
-            // Exibir os produtos similares
-            exibirProdutosSimilares(produtosSimilares);
         } else {
             alert("Material não encontrado!");
             window.location.href = "../buscar/"; // Redireciona para a tela de busca
@@ -60,31 +47,12 @@ async function carregarDados() {
     }
 }
 
-// Exibir os produtos similares na tela
-function exibirProdutosSimilares(produtos) {
-    const container = document.getElementById("produtosSimilares");
-    container.innerHTML = ""; // Limpa o conteúdo anterior
-
-    produtos.forEach((produto) => {
-        const produtoDiv = document.createElement("div");
-        produtoDiv.className = "produto-similar";
-
-        produtoDiv.innerHTML = `
-            <p><strong>Referência:</strong> ${produto.referencia_mat}</p>
-            <p><strong>Marca:</strong> ${produto.marca}</p>
-            <button type="button" class="button_editar" onclick="editarProduto('${produto.id}')">Editar</button>
-            <button type="button" class="button_excluir" onclick="excluirProduto('${produto.id}')">Excluir</button>
-        `;
-        container.appendChild(produtoDiv);
-    });
-}
-
-// Atualize os dados do material principal
+// Atualize os dados no Firestore
 async function atualizarDados(referencia, marca, fotos) {
     try {
         const docRef = doc(db, "materiais_ref", codigo);
         const updateData = {
-            referencia_mat: referencia,
+            referencia: referencia,
             marca: marca,
         };
 
@@ -131,26 +99,5 @@ function voltarParaLista() {
     window.location.href = "../buscar/";
 }
 
-
-// Função para editar um produto similar
-function editarProduto(produtoId) {
-    window.location.href = `editarProduto.html?codigo=${codigo}&produtoId=${produtoId}`;
-}
-
-// Função para excluir um produto similar
-async function excluirProduto(produtoId) {
-    try {
-        const confirmacao = confirm("Tem certeza que deseja excluir este produto?");
-        if (!confirmacao) return;
-
-        const produtoRef = doc(db, "materiais_ref", codigo, "referencia_kt", produtoId);
-        await deleteDoc(produtoRef);
-        alert("Produto excluído com sucesso!");
-        carregarDados(); // Recarrega os dados após a exclusão
-    } catch (error) {
-        console.error("Erro ao excluir produto:", error);
-        alert("Erro ao excluir o produto.");
-    }
-}
 // Carregue os dados ao abrir a página
 carregarDados();
